@@ -3,18 +3,35 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main  # الفرع اللي انت تستخدمه
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+    # الخطوة 1: جيب الكود (دي موجودة عندك)
     - uses: actions/checkout@v3
+
+    # --- الخطوات اللي ناقصاك أهي ---
+    # الخطوة 2: تجهيز بيئة العمل (Node.js)
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # أو أي إصدار انت بتستخدمه
+
+    # الخطوة 3: تثبيت الحزم وعمل Build
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build
+    # --- نهاية الخطوات الناقصة ---
+
+    # الخطوة 4: الـ Deploy (دي موجودة عندك وصلحناها)
     - uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
         projectId: "orpita-studio"
-        target: "orpita-studio"
-        channelId: "preview"  # حدد اسم الـ preview channel هنا
-        expires: "7d"          # مدة صلاحية الـ preview
+        target: "orpita-studio" # دي اتصلحت
+        channelId: "preview"
+        expires: "7d"

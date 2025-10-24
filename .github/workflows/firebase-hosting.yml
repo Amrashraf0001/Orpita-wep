@@ -20,4 +20,4 @@ jobs:
         projectId: "orpita-studio"
         target: "orpita-studio"
         channelId: "preview"
-        expires: "7d"        expires: "7d"
+        expires: "7d"

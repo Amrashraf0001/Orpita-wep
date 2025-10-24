@@ -6,32 +6,18 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-deploy: # اسم الـ job
     runs-on: ubuntu-latest
 
     steps:
-    # الخطوة 1: جيب الكود (دي موجودة عندك)
+    # الخطوة 1: جيب الكود (زي ما هي)
     - uses: actions/checkout@v3
 
-    # --- الخطوات اللي ناقصاك أهي ---
-    # الخطوة 2: تجهيز بيئة العمل (Node.js)
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18' # أو أي إصدار انت بتستخدمه
-
-    # الخطوة 3: تثبيت الحزم وعمل Build
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
-    # --- نهاية الخطوات الناقصة ---
-
-    # الخطوة 4: الـ Deploy (دي موجودة عندك وصلحناها)
+    # الخطوة 2: الـ Deploy علطول (شلنا كل خطوات الـ build)
     - uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
         projectId: "orpita-studio"
-        target: "orpita-studio" # دي اتصلحت
+        target: "orpita-studio"
         channelId: "preview"
-        expires: "7d"
+        expires: "7d"        expires: "7d"
